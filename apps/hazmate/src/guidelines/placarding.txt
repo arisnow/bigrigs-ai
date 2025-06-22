@@ -1,0 +1,125 @@
+HazMate – Placarding Requirements
+Specific Hazardous Materials Categories and Placarding Requirements:
+The requirements are primarily derived from Table 1 and Table 2 to 49 CFR 172.504(e).
+A. Materials Requiring Placarding for "Any Quantity" (Table 1 Materials):
+These materials present a severe, immediate risk that necessitates placarding regardless of the amount being transported, to ensure maximum visibility and immediate recognition of the hazard.
+1.
+Class 1 (Explosives) - Divisions 1.1, 1.2, 1.3, 1.5
+◦
+Placard: EXPLOSIVES 1.1, EXPLOSIVES 1.2, EXPLOSIVES 1.3, EXPLOSIVES 1.5. The placard must display the appropriate division number and compatibility group letter.
+◦
+Rationale: These explosives pose an extreme risk of mass explosion, projectile hazard, or fire hazard. Their presence, even in small quantities, demands immediate and clear identification. Segregation among different Class 1 materials is governed by a separate Compatibility Table for Class 1 (Explosive) Materials.
+◦
+Note: For rail transport, Divisions 1.1 and 1.2 require the placard on a white square background.
+2.
+Class 2 (Gases) - Division 2.3 (Poison Gas)
+◦
+Placard: POISON GAS. For materials that are poisonous by inhalation (see § 171.8), the words "Poison-Inhalation Hazard" or "Toxic-Inhalation Hazard" and the appropriate "Zone A," "Zone B," "Zone C," or "Zone D" must also be indicated on the shipping paper.
+◦
+Rationale: These gases are highly toxic by inhalation. Any release, regardless of quantity, could pose a serious threat to life, requiring immediate and decisive protective actions. For example, Cyanogen (UN1026) is a 2.3 (Poison Gas) with a 2.1 (Flammable Gas) subsidiary risk. Chloropicrin and methyl bromide mixtures (UN1581) are 2.3 materials.
+◦
+Note: For rail transport, Hazard Zone A gases (like Division 2.3 Zone A) require the placard on a white square background.
+3.
+Class 4 (Flammable Solids) - Division 4.3 (Dangerous When Wet)
+◦
+Placard: DANGEROUS WHEN WET.
+◦
+Rationale: These materials react with water to produce flammable gases, which can ignite and cause an explosion. The danger posed by water makes immediate identification critical, especially in changing weather conditions or during emergency response involving water application. Examples include Calcium (UN1401) and Alkali metal amalgam, solid (UN3401).
+◦
+Note: A transport vehicle, portable tank, freight container, or unit load device containing a material with a subsidiary hazard of "dangerous when wet" must be placarded on each side and each end.
+4.
+Class 5 (Oxidizers & Organic Peroxides) - Division 5.2 (Organic Peroxide, Type B, liquid or solid, temperature controlled)
+◦
+Placard: ORGANIC PEROXIDE.
+◦
+Rationale: These peroxides are highly unstable and can undergo rapid decomposition, potentially leading to explosion, fire, or heat generation, especially if temperature control is lost. The "any quantity" rule reflects their inherent reactivity and sensitivity.
+5.
+Class 6 (Toxic Substances) - Division 6.1 (material poisonous by inhalation)
+◦
+Placard: POISON INHALATION HAZARD.
+◦
+Rationale: Similar to Poison Gases, these materials are toxic when inhaled and pose a severe respiratory threat. Immediate warning is crucial for protecting responders and evacuating affected areas. Examples include Hydrogen cyanide, stabilized (UN1051) and Methyl isocyanate (UN2480).
+◦
+Note: For rail transport, Hazard Zone A liquids (like Division 6.1 PG I Zone A) require the placard on a white square background.
+6.
+Class 7 (Radioactive Materials)
+◦
+Placard: RADIOACTIVE.
+◦
+Rationale: Placarding is required for all shipments containing a Radioactive Yellow-III label. It is also required for unpackaged LSA-I (Low Specific Activity) material or SCO-I (Surface Contaminated Objects), shipments under exclusive use, and certain closed vehicles. The rationale is to warn of the presence of radioactive material that poses a significant radiation risk or requires special handling and control during transport.
+◦
+Additional Placards: For uranium hexafluoride shipments (454 kg or more), a CORROSIVE placard and a POISON placard are also required.
+◦
+Note: Motor vehicles transporting highway route controlled quantity Class 7 materials must have the RADIOACTIVE placard on a white square background.
+B. Materials Requiring Placarding for "454 kg (1,001 lbs) or More Aggregate Gross Weight" (Table 2 Materials):
+These materials pose a significant hazard, but the risk is generally considered manageable or less immediate in smaller quantities. Placarding is required when the volume transported reaches a level where the potential for harm or widespread impact increases.
+1.
+Class 1 (Explosives) - Divisions 1.4, 1.6
+◦
+Placard: EXPLOSIVES 1.4, EXPLOSIVES 1.6. The placard must display the compatibility group letter.
+◦
+Rationale: These divisions represent explosives with lower hazards than 1.1, 1.2, 1.3, or 1.5. Division 1.4 poses a fire hazard with minor blast or projection effects. Division 1.6 contains extremely insensitive articles. The quantity threshold balances the reduced risk with the need for identification in larger amounts.
+2.
+Class 2 (Gases) - Divisions 2.1 (Flammable Gas) and 2.2 (Non-Flammable Gas)
+◦
+Placard: FLAMMABLE GAS, NON-FLAMMABLE GAS. An OXYGEN placard may be used for compressed or refrigerated liquid oxygen.
+◦
+Rationale: Flammable gases present a significant fire and explosion risk. Non-flammable gases (which include non-flammable, non-toxic gases like argon, as well as oxidizing gases like oxygen) can displace oxygen or support combustion. The quantity threshold ensures that larger volumes are clearly identified for safety, given the potential for rapid dispersion.
+◦
+Note: A DOT 113 tank car transporting Division 2.1 material requires the placard on a white square background for rail transport.
+3.
+Class 3 (Flammable Liquids)
+◦
+Placard: FLAMMABLE. The word "GASOLINE" may be used on placards for gasoline.
+◦
+Rationale: These liquids have flash points below 60 °C (140 °F) and present a fire hazard. The quantity threshold ensures that significant volumes, which could lead to large fires, are clearly identified.
+◦
+Exceptions: Combustible liquids (flash point above 60 °C (140 °F) but below 93 °C (200 °F)) in non-bulk packagings are not subject to placarding. However, for bulk packagings, a COMBUSTIBLE placard may be used, or a FLAMMABLE placard may be used in its place. The word "FUEL OIL" may be used on placards for fuel oil.
+4.
+Class 4 (Flammable Solids) - Divisions 4.1 (Flammable Solid) and 4.2 (Spontaneously Combustible)
+◦
+Placard: FLAMMABLE SOLID, SPONTANEOUSLY COMBUSTIBLE.
+◦
+Rationale: Flammable solids can be readily ignited. Spontaneously combustible materials can ignite without an external ignition source upon exposure to air. The quantity threshold ensures that large amounts, which could contribute to substantial fires, are identified.
+5.
+Class 5 (Oxidizers & Organic Peroxides) - Division 5.1 (Oxidizer) and Division 5.2 (Organic Peroxide - other than Type B, temperature controlled)
+◦
+Placard: OXIDIZER, ORGANIC PEROXIDE.
+◦
+Rationale: Oxidizers can cause or enhance the combustion of other materials by yielding oxygen. Organic peroxides are thermally unstable and can undergo exothermic decomposition. The quantity threshold highlights the increased risk associated with larger amounts of these materials.
+◦
+Exceptions: OXIDIZER placards are not required when EXPLOSIVES 1.1 or 1.2 placards are present, or for Division 1.5 explosives in transport vehicle or rail car for domestic transport.
+6.
+Class 6 (Toxic Substances) - Division 6.1 (other than materials poisonous by inhalation) and Division 6.2 (Infectious Substances)
+◦
+Placard: POISON. The word "TOXIC" may be used in lieu of "POISON". For Division 6.1, PG III materials, "PG III" may be displayed below the mid line.
+◦
+Rationale: These materials can cause death, serious injury, or harm to human health upon contact, ingestion, or inhalation. The quantity threshold ensures that substantial amounts, which pose a greater collective risk, are identified.
+◦
+Exceptions: Infectious substances (Division 6.2) are generally not subject to placarding requirements. A POISON placard is not required if a POISON INHALATION HAZARD or POISON GAS placard is required.
+7.
+Class 8 (Corrosive Materials)
+◦
+Placard: CORROSIVE.
+◦
+Rationale: Corrosive materials can cause severe damage to living tissue or degrade other materials (e.g., metals). The quantity threshold highlights the increased risk of significant spills or contact with larger volumes. Examples include Sulfuric acid (UN1830) and Hydrochloric acid (UN1789).
+◦
+Specific Prohibition: Class 8 (corrosive) liquids may not be loaded above or adjacent to Class 4 (flammable) or Class 5 (oxidizing) materials, unless commingling would not occur and the mixture would not cause fire or dangerous evolution of heat/gas.
+8.
+Class 9 (Miscellaneous Hazardous Materials)
+◦
+Placard: CLASS 9 (for bulk packaging only).
+◦
+Rationale: These materials present a hazard during transportation but do not fit into other hazard classes. For domestic transportation, a CLASS 9 placard is not required, but a bulk packaging must be marked with the appropriate identification number on a Class 9 placard, an orange panel, or a white square-on-point display configuration. This ensures that even for materials with less severe or miscellaneous hazards, bulk quantities are clearly identifiable.
+◦
+Marine Pollutants: If a marine pollutant (listed in Appendix B to § 172.101) does not meet the definition of Classes 1-8, it must be offered as "Environmentally hazardous substances, liquid, n.o.s., UN3082" or "Environmentally hazardous substances, solid, n.o.s., UN3077," which are Class 9 entries.
+C. Special Placarding Circumstances:
+•
+DANGEROUS Placard: A transport vehicle or freight container containing non-bulk packages with two or more categories of hazardous materials that require different placards from Table 2 (the 454 kg/1,001 lbs threshold) may be placarded with a DANGEROUS placard instead of separate placards for each material. However, if 1,000 kg (2,205 pounds) or more of one category of material from Table 2 is loaded at a single facility, the specific placard for that category must be applied. The DANGEROUS placard generally indicates a broad mix of lower-risk hazardous materials.
+•
+Empty Uncleaned Bulk Packagings: A bulk packaging that required placarding when it contained a hazardous material must remain placarded when empty, unless it has been sufficiently cleaned to remove any potential hazard, or is refilled with a different material.
+•
+Unodorized Liquefied Petroleum Gas (LPG): Portable tanks, tank cars, or multi-unit tank car tanks containing unodorized LPG must be marked "NON-ODORIZED" or "NOT ODORIZED" on two opposing sides near the proper shipping name or placards. This warns that the gas, despite its typical odorant, is unodorized.
+•
+Forbidden Materials: Materials designated as "Forbidden" in the HMT cannot be offered for transportation. Therefore, they have no placarding requirements as they are prohibited from transport altogether. Examples include Ammonium bromate, Nitroglycerin, liquid, not desensitized, and Hydrogen cyanide, stabilized with less than 3 percent water.
+This comprehensive overview, drawing directly from the provided CFR excerpts and the ERG, outlines the various hazardous materials classifications and the specific placarding requirements designed to ensure safety in transportation.

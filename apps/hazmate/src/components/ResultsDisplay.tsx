@@ -7,140 +7,222 @@ interface ResultsDisplayProps {
   data: HazmatAnalysisResult;
 }
 
-const icons = {
-  placards: "🚩",
-  missing_fields: "❗",
-  compliance_score: "✅",
-  incompatibilities: "🚫",
-  document_valid: "✔️",
-  line_item: "📦",
+// Safety-first color scheme for mobile
+const statusColors = {
+  critical: "bg-red-500 text-white",
+  warning: "bg-yellow-500 text-black", 
+  safe: "bg-green-500 text-white",
+  info: "bg-blue-500 text-white"
 };
 
-function ResultCard({ icon, title, content, color = "bg-white" }: { icon: string, title: string, content: React.ReactNode, color?: string }) {
+function SafetyAlert({ item }: { item: HazmatLineItem }) {
+  const [expanded, setExpanded] = useState(false);
+  
   return (
-    <div className={`${color} rounded-lg shadow p-4`}>
-      <div className="flex items-start gap-4">
-        <span className="text-2xl mt-1">{icon}</span>
-        <div className="w-full">
-          <h3 className="font-semibold text-gray-800">{title}</h3>
-          <div className="text-gray-700 mt-1">{content}</div>
+    <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          <span className="text-2xl mr-3">⚠️</span>
+          <div>
+            <h3 className="font-bold text-red-800 text-lg">
+              {item.properShippingName}
+            </h3>
+            <p className="text-red-700 text-sm">
+              UN {item.unNumber} • Class {item.hazardClass}
+            </p>
+          </div>
         </div>
+        <button 
+          onClick={() => setExpanded(!expanded)}
+          className="text-red-600 font-bold text-lg"
+        >
+          {expanded ? "−" : "+"}
+        </button>
+      </div>
+      
+      {expanded && (
+        <div className="mt-3 pt-3 border-t border-red-200">
+          <div className="grid grid-cols-1 gap-2 text-sm">
+            <div className="bg-white p-2 rounded">
+              <span className="font-bold text-red-800">🚨 EVACUATE:</span> {item.ergSummary.evacuation_distance}
+            </div>
+            <div className="bg-white p-2 rounded">
+              <span className="font-bold text-red-800">🛡️ PPE:</span> {item.ergSummary.ppe.join(", ")}
+            </div>
+            <div className="bg-white p-2 rounded">
+              <span className="font-bold text-red-800">🔥 FIRE:</span> {item.ergSummary.fire_response}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ComplianceStatus({ data }: { data: HazmatAnalysisResult }) {
+  const canDrive = data.documentIsValid && data.missingFields.length === 0;
+  
+  return (
+    <div className={`${canDrive ? statusColors.safe : statusColors.critical} p-4 rounded-lg mb-4`}>
+      <div className="text-center">
+        <div className="text-3xl mb-2">
+          {canDrive ? "✅" : "❌"}
+        </div>
+        <h2 className="text-xl font-bold mb-1">
+          {canDrive ? "SAFE TO DRIVE" : "DO NOT DRIVE"}
+        </h2>
+        <p className="text-sm opacity-90">
+          {canDrive 
+            ? "Document is compliant with regulations" 
+            : "Document has compliance issues that must be fixed"
+          }
+        </p>
       </div>
     </div>
   );
 }
 
-function LineItemCard({ item }: { item: HazmatLineItem }) {
+function QuickActions({ data }: { data: HazmatAnalysisResult }) {
+  const hasIssues = !data.documentIsValid || data.missingFields.length > 0;
+  
+  if (!hasIssues) return null;
+  
   return (
-    <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-      <h4 className="font-bold text-lg text-gray-800">
-        Line Item #{item.lineNumber}: {item.properShippingName}
-      </h4>
-      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm">
-        <div><strong>UN Number:</strong> {item.unNumber}</div>
-        <div><strong>Hazard Class:</strong> {item.hazardClass}</div>
-        <div><strong>Packing Group:</strong> {item.packingGroup}</div>
-        <div><strong>Quantity:</strong> {item.quantity}</div>
+    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+      <h3 className="font-bold text-yellow-800 mb-2">🚨 IMMEDIATE ACTIONS NEEDED:</h3>
+      <div className="space-y-2 text-sm">
+        {data.missingFields.length > 0 && (
+          <div className="flex items-center">
+            <span className="text-yellow-600 mr-2">📝</span>
+            <span>Complete missing fields: {data.missingFields.join(", ")}</span>
+          </div>
+        )}
+        {data.placards.length > 0 && (
+          <div className="flex items-center">
+            <span className="text-yellow-600 mr-2">🚩</span>
+            <span>Install placards: {data.placards.join(", ")}</span>
+          </div>
+        )}
+        {data.incompatibilities.length > 0 && (
+          <div className="flex items-center">
+            <span className="text-yellow-600 mr-2">⚠️</span>
+            <span>Check incompatibilities: {data.incompatibilities.join(", ")}</span>
+          </div>
+        )}
       </div>
-      <div className="mt-4 pt-4 border-t border-gray-200">
-        <h5 className="font-semibold text-gray-700">ERG Summary (Guide #{item.ergSummary.guide_number})</h5>
-        <div className="mt-2 space-y-1 text-xs text-gray-600">
-          <p><strong>Hazards:</strong> {item.ergSummary.hazards.join(", ")}</p>
-          <p><strong>PPE:</strong> {item.ergSummary.ppe.join(", ")}</p>
-          <p><strong>Evacuation:</strong> {item.ergSummary.evacuation_distance}</p>
-          <p><strong>Fire Response:</strong> {item.ergSummary.fire_response}</p>
+    </div>
+  );
+}
+
+function PlacardInfo({ data }: { data: HazmatAnalysisResult }) {
+  if (data.placards.length === 0) return null;
+  
+  return (
+    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+      <h3 className="font-bold text-blue-800 mb-2">🚩 REQUIRED PLACARDS:</h3>
+      <div className="space-y-2">
+        {data.placards.map((placard, index) => (
+          <div key={index} className="bg-white p-2 rounded text-sm">
+            <span className="font-bold">{placard}</span>
+          </div>
+        ))}
+      </div>
+      {data.placardReasoning && (
+        <details className="mt-3">
+          <summary className="text-blue-600 text-sm cursor-pointer">
+            Why these placards?
+          </summary>
+          <p className="mt-2 text-sm text-blue-700 bg-white p-2 rounded">
+            {data.placardReasoning}
+          </p>
+        </details>
+      )}
+    </div>
+  );
+}
+
+function MaterialDetails({ data }: { data: HazmatAnalysisResult }) {
+  const [expanded, setExpanded] = useState(false);
+  
+  return (
+    <div className="bg-gray-50 rounded-lg p-4 mb-4">
+      <div className="flex items-center justify-between">
+        <h3 className="font-bold text-gray-800">📦 MATERIALS ({data.lineItems.length})</h3>
+        <button 
+          onClick={() => setExpanded(!expanded)}
+          className="text-blue-600 font-bold"
+        >
+          {expanded ? "Hide" : "Show"}
+        </button>
+      </div>
+      
+      {expanded && (
+        <div className="mt-3 space-y-3">
+          {data.lineItems.map((item) => (
+            <div key={item.lineNumber} className="bg-white p-3 rounded border">
+              <div className="font-bold text-gray-800">
+                {item.properShippingName}
+              </div>
+              <div className="text-sm text-gray-600 mt-1">
+                UN {item.unNumber} • Class {item.hazardClass} • PG {item.packingGroup}
+              </div>
+              <div className="text-sm text-gray-600">
+                Quantity: {item.quantity}
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
 export default function ResultsDisplay({ data }: ResultsDisplayProps) {
   const router = useRouter();
-  const [showReasoning, setShowReasoning] = useState(false);
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-4 bg-gray-50 text-gray-800">
-      <div className="w-full max-w-4xl">
-        <h1 className="text-3xl font-bold mb-6 text-center text-gray-900">Compliance Analysis</h1>
-        
-        {/* Document Level Summary */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 border-b pb-2">Document Summary</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <ResultCard 
-              icon={icons.document_valid} 
-              title="Document Validity"
-              content={data.documentIsValid ? "Valid" : "Invalid"}
-              color={data.documentIsValid ? "bg-green-100" : "bg-red-100"}
-            />
-            <ResultCard 
-              icon={icons.compliance_score} 
-              title="Compliance Score"
-              content={data.complianceScore}
-              color="bg-blue-100"
-            />
-            <ResultCard 
-              icon={icons.placards} 
-              title="Placards Needed"
-              content={
-                <div>
-                  <p className="font-semibold">{data.placards.join(", ") || "None"}</p>
-                  {data.placardReasoning && (
-                    <div className="mt-2">
-                      <button 
-                        onClick={() => setShowReasoning(!showReasoning)}
-                        className="text-sm text-blue-600 hover:underline"
-                      >
-                        {showReasoning ? "Hide Reasoning" : "Show Reasoning"}
-                      </button>
-                      {showReasoning && (
-                        <p className="mt-2 text-xs text-gray-600 bg-gray-100 p-2 rounded">
-                          {data.placardReasoning}
-                        </p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              }
-              color="bg-yellow-100"
-            />
-            {data.missingFields?.length > 0 && (
-              <ResultCard 
-                icon={icons.missing_fields} 
-                title="Missing Fields"
-                content={data.missingFields.join(", ")}
-                color="bg-orange-100"
-              />
-            )}
-            {data.incompatibilities?.length > 0 && (
-              <ResultCard 
-                icon={icons.incompatibilities} 
-                title="Incompatibilities"
-                content={data.incompatibilities.join(", ")}
-                color="bg-red-100"
-              />
-            )}
-          </div>
+    <div className="min-h-screen bg-gray-100 p-4">
+      <div className="max-w-md mx-auto">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            Hazmat Analysis
+          </h1>
+          <p className="text-gray-600 text-sm">
+            {new Date().toLocaleDateString()} • {new Date().toLocaleTimeString()}
+          </p>
         </div>
 
-        {/* Line Items Analysis */}
-        <div>
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 border-b pb-2">Hazardous Materials Details</h2>
-          <div className="space-y-4">
-            {data.lineItems.map((item) => (
-              <LineItemCard key={item.lineNumber} item={item} />
-            ))}
-          </div>
-        </div>
-      
-        <div className="text-center mt-8">
+        {/* Critical Safety Alerts - Show First */}
+        {data.lineItems.map((item) => (
+          <SafetyAlert key={item.lineNumber} item={item} />
+        ))}
+
+        {/* Can I Drive? - Most Important Question */}
+        <ComplianceStatus data={data} />
+
+        {/* What Do I Need To Do Right Now? */}
+        <QuickActions data={data} />
+
+        {/* Placard Requirements */}
+        <PlacardInfo data={data} />
+
+        {/* Material Details - Collapsed by Default */}
+        <MaterialDetails data={data} />
+
+        {/* Footer Actions */}
+        <div className="space-y-3 mt-6">
           <button 
-            className="bg-blue-600 text-white rounded-lg py-3 px-8 text-lg font-semibold hover:bg-blue-700 transition-colors shadow-md" 
+            className="w-full bg-blue-600 text-white rounded-lg py-3 px-4 font-bold text-lg"
             onClick={() => router.push("/")}
           >
-            Analyze Another Document
+            📷 Analyze Another Document
           </button>
+          
+          <div className="text-center text-xs text-gray-500">
+            <p>Keep this document with your shipment</p>
+            <p>Compliance score: {data.complianceScore}</p>
+          </div>
         </div>
       </div>
     </div>

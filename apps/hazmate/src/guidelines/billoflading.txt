@@ -1,0 +1,98 @@
+Bill of Lading Hazardous Materials Checklist for Vision AI (Enhanced)
+The AI should verify the presence and correctness of the following information on the bill of lading, paying close attention to its order and format:
+I. Core Hazardous Material Description (Mandatory Sequence)
+The following elements must appear in sequence, with no other information interspersed1:
+1. Identification Number:
+Must be the 4-digit UN or NA number (e.g., UN1219)23.
+Displayed as shown in Column (4) of the § 172.101 table2.
+Preceded by "UN," "NA," or "ID," as appropriate, for marking, but the shipping paper itself just lists the number24.
+2. Proper Shipping Name:
+Must be the name prescribed in Column (2) of the § 172.101 table (e.g., Isopropanol)23.
+Proper shipping names are limited to those shown in Roman type (not italics)5.
+Words may be in singular or plural, and capital or lower case letters5.
+Punctuation marks and words in italics are not part of the proper shipping name6.
+The word "Waste" must precede the proper shipping name if it's a hazardous waste and "Waste" isn't already in the name (e.g., "Waste acetone")7.
+The word "liquid" or "solid" may be added if the material is specifically listed by name but its physical state differs8.
+The qualifying word "stabilized" may be added if required or employed9.
+3. Hazard Class or Division Number:
+Must be the class/division corresponding to the material (e.g., 3 for Flammable Liquid)310.
+Displayed as shown in Column (3) of the § 172.101 table9.
+For domestic shipments, primary and subsidiary hazard class or division names (e.g., "Flammable Liquid", "Corrosive") may be entered following the numerical hazard class/division, or following the basic description10.
+Hazard class or division numbers for subsidiary hazards should be placed in parentheses (e.g., "6.1, (8, 3)")111.
+The hazard class need not be included for "Combustible liquid, n.o.s."10.
+4. Packing Group (PG):
+Must be present if applicable (e.g., II, III)310.
+Displayed in Roman numerals, as designated in Column (5) of the § 172.101 table10.
+Can be preceded by "PG" (e.g., "PG II")10.
+Class 1 (explosives) materials, self-reactive substances, Division 5.2 materials, and entries not assigned a packing group (e.g., Class 7) are excepted from this requirement10.
+Packing Groups I, II, and III indicate great, medium, or minor danger, respectively1213.
+II. Essential Shipping Information (Placement Rules Apply)
+Total Quantity:
+For non-bulk packages (except aircraft), the total quantity by mass or volume, with units (e.g., "200 kg," "50 L"). For Class 7, by activity14.
+For aircraft: Total net mass per package, or total gross mass if indicated in Columns (9A) or (9B) of § 172.101 table1516. For Class 7, quantity by activity15.
+For bulk packages or cylinders, an indication like "1 cargo tank" or "10 cylinders" is acceptable1516.
+For dangerous goods in machinery/apparatus, individual total quantities (or estimates) in solid, liquid or gaseous state must be shown17.
+For salvage packaging, an estimate of dangerous goods per package1516.
+For chemical kits and first aid kits, the total net mass of hazardous materials must be shown17.
+The total quantity may appear before or after, or both before and after, the description18.
+Number and Type of Packages:
+Must be indicated by description (e.g., "12 drums")319.
+Abbreviations are allowed if commonly accepted and recognizable (e.g., "cyl." for "cylinder")19.
+Packaging specification number (e.g., "1H1") may be included (e.g., "12 1H1 drums")19.
+The type of packaging and destination marks may be entered in any appropriate manner before or after the basic description18.
+Emergency Response Telephone Number:
+Must be present and monitored at all times during transportation3....
+Identifies the knowledgeable person or agency, by name or contract number20....
+Can be immediately following the basic description, OR entered once prominently if applicable to all hazardous materials on the paper (e.g., by highlighting, larger/different font, or setting apart with "EMERGENCY CONTACT: * * *")24.
+For telephone numbers outside the U.S., include international access code or "+" sign, country code, and city code21.
+Shipper's Certification:
+Must contain specific language, either:
+"This is to certify that the above-named materials are properly classified, described, packaged, marked and labeled, and are in proper condition for transportation according to the applicable regulations of the Department of Transportation"25.
+OR "I hereby declare that the contents of this consignment are fully and accurately described above by the proper shipping name, and are classified, packaged, marked and labeled/placarded, and are in all respects in proper condition for transport according to applicable international and national governmental regulations"25.
+Note: "herein-named" may substitute "above-named"26; "above" may substitute "below"27; "packed" may substitute "packaged"27.
+Must be legibly signed by a principal, officer, partner, or employee of the shipper or their agent2829. For rail, may be verbal or electronic signature28.
+For air transport, an additional statement is required: "I declare that all of the applicable air transport requirements have been met"30.
+Date of Acceptance by Initial Carrier: Must be included20. For rail, vessel, or air shipments, the date on the waybill, airbill, or bill of lading may be used20.
+III. Conditional Information (if applicable to the specific shipment)
+"RQ" (Reportable Quantity):
+If a hazardous substance (defined in § 171.8), "RQ" must be entered on the shipping paper either before or after the basic description31.
+Technical Name(s):
+For "n.o.s." (not otherwise specified) or generic descriptions (identified by "G" in Column 1 of the Table), the technical name(s) of the constituent(s) most predominately contributing to the hazards must be in parentheses in association with the basic description3233.
+The word "contains" may be used in association with the technical name, if appropriate (e.g., "UN 1993, Flammable liquids, n.o.s. (contains Xylene and Benzene), 3, II")3234.
+For toxic materials (Division 6.1, PG I or II, or Division 2.3) with "G" in Column 1, the technical name of the toxic constituent must be in parentheses32.
+For organic peroxides, the technical name must include the actual concentration or range32.
+The technical name for a Division 6.2 material is not marked on the outer package3235.
+Exceptions apply for hazardous waste described as "Hazardous waste, liquid or solid, n.o.s." (if EPA waste number is included), or if the n.o.s. description already names the primary chemical element/group3336.
+Material State/Property Modifiers:
+"HOT": If a liquid material is an elevated temperature material (as defined in § 171.8) and this isn't in the proper shipping name, the word "HOT" must immediately precede the proper shipping name37.
+"TEMPERATURE CONTROLLED": For Division 4.1 (polymerizing substance and self-reactive) and 5.2 (organic peroxide) materials requiring temperature control, this phrase must be added as part of the proper shipping name, unless already included. The control and emergency temperature must also be included26.
+"SAMPLE": For certain samples of Division 4.1 or 5.2 materials, it must appear in association with the basic description38.
+"non-odorized" or "not-odorized": For non-odorized liquefied petroleum gas (LPG), this must be included in association with the proper shipping description38.
+Holding Time: For refrigerated liquefied gases in portable tanks, the date at which the actual holding time ends must be provided in association with the basic description28.
+Class 7 (Radioactive) Material Additional Entries:
+Name of each radionuclide (symbols authorized, e.g., "99Mo"). For LSA-I, "LSA-I" may be used3940.
+Description of physical and chemical form (e.g., "special form")39.
+Maximum activity in SI units (e.g., Becquerels (Bq), Terabecquerels (TBq)); customary units (e.g., Curies (Ci)) are optional in parentheses3941. For Pu-239/241, weight in grams can be added to activity; for others, weight can substitute activity3941.
+Category of label applied (e.g., "RADIOACTIVE WHITE-I," or "WHITE-I")42.
+Transport Index (TI) for RADIOACTIVE YELLOW-II or RADIOACTIVE YELLOW-III labels4243.
+"Fissile Excepted" if applicable, or Criticality Safety Index (CSI) for fissile material4244.
+Notation of package identification marking (e.g., DOE/NRC approval)42.
+"Exclusive Use" if consigned as such4546.
+"Highway route controlled quantity" or "HRCQ" if applicable4748.
+"RESIDUE: Last Contained...": For tank cars containing the residue of a hazardous material, this phrase must immediately precede or follow the basic shipping description or proper shipping name49.
+Air Transport Limitations: A statement indicating "passenger and cargo aircraft" or "cargo aircraft only" must be entered on the shipping paper49....
+"RQ" (Reportable Quantity): If a hazardous substance, "RQ" must be entered either before or after the basic description31.
+"NONCORROSIVE" or "NONCOR": For non-corrosive liquefied petroleum gas in Q&T steel cargo tanks52.
+"NOT FOR Q and T TANKS": For grades of liquefied petroleum gas other than "Noncorrosive"52.
+"DAMAGED/DEFECTIVE": For lithium cells/batteries transported per § 173.185(f)53.
+"LITHIUM BATTERIES FOR DISPOSAL" or "LITHIUM BATTERIES FOR RECYCLING": For lithium cells/batteries transported for disposal/recycling53.
+"DOT-SP" or "DOT-E": If authorized by a special permit or exemption, the relevant number must be included54.
+Class 1 (Explosive) Material Identifiers: If not marked on the package, EX-number, FC-number, product code, or national stock number of each explosive item55.
+IV. General Formatting and Legibility Requirements
+Legibility: All required information must be legible and printed (manually or mechanically) in English5657.
+Prohibited Content: The description should not contain any unauthorized codes or abbreviations56. Only authorized abbreviations (e.g., "ORM," "TNT," "PCB," packaging types) are allowed1958.
+Additional Information Placement: Any additional information (not part of the basic description) should be placed after the basic description, unless otherwise permitted or required1859.
+Continuation Pages: If a shipping paper consists of more than one page, each page must be consecutively numbered, and the first page must bear a notation specifying the total number of pages included (e.g., "Page 1 of 4 pages")60.
+Electronic Shipping Papers: If accepted electronically by rail carriers, the information must be available to the offeror and carrier at all times during transport, and the carrier must maintain a printed copy until delivery is complete61. A procedure for verifying accuracy is required60.
+Color: While not explicitly required for shipping paper text, for clarity purposes (such as when contrasting with non-hazardous material descriptions), hazardous material entries may be in a color that clearly contrasts
+

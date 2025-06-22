@@ -1,22 +1,28 @@
 // @ts-check
 
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import nextPlugin from "@next/eslint-plugin-next";
 
-export default tseslint.config({
-  files: ['**/*.ts', '**/*.tsx'],
-  extends: [
-    eslint.configs.recommended,
-    ...tseslint.configs.recommended,
-  ],
-  rules: {
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      { 
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-        caughtErrorsIgnorePattern: '^_',
-      },
-    ],
+export default [
+  {
+    ignores: [".next/**"],
   },
-});
+  eslint.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    plugins: {
+      "@next/next": nextPlugin,
+    },
+    rules: {
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs["core-web-vitals"].rules,
+    },
+    languageOptions: {
+      globals: {
+        React: "readonly",
+      },
+    },
+  }
+];
