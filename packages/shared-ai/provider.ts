@@ -1,8 +1,9 @@
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { HazmatAnalysisResult, RawHazmatData } from "../types";
+import { PLACARDING_GUIDELINES, BOL_REQUIREMENTS, SAFETY_PRIORITIES, CFR_REFERENCES } from "./guidelines";
 
-// Move prompts here since they're part of the AI service
-const HAZMAT_EXTRACTION_PROMPT = `You are an expert at reading hazardous materials shipping documents. Your task is to extract all visible data from the document image and return it in a structured JSON format.
+// Enhanced extraction prompt with regulatory requirements
+const HAZMAT_EXTRACTION_PROMPT = `You are an expert at reading hazardous materials shipping documents according to 49 CFR regulations. Your task is to extract all visible data from the document image and return it in a structured JSON format.
 
 IMPORTANT: Return ONLY valid JSON with no additional text, markdown formatting, or code fences.
 
@@ -17,12 +18,26 @@ Extract the following information and return it as a JSON object with this exact
       "quantity": "string"
     }
   ],
-  "missingFields": ["array of missing field names"]
+  "missingFields": ["array of missing field names"],
+  "emergencyContact": "string (if visible)",
+  "shipperCertification": "string (if visible)",
+  "dateOfAcceptance": "string (if visible)",
+  "totalQuantity": "string (if visible)",
+  "packageDescription": "string (if visible)",
+  "documentType": "bill_of_lading|manifest|other"
 }
+
+REGULATORY REQUIREMENTS TO CHECK:
+- Mandatory sequence: UN/NA Number → Proper Shipping Name → Hazard Class → Packing Group
+- Essential fields: Emergency contact, Shipper certification, Date of acceptance, Total quantity, Package description
+- Shipper certification must contain specific regulatory language
+- All quantities must have proper units
+- Package descriptions must be clear and complete
 
 If any field is not visible or unclear, use null for that field. Do not include any explanatory text, just the JSON object.`;
 
-const HAZMAT_ANALYSIS_PROMPT = `You are an expert in U.S. hazardous materials transportation regulations (49 CFR). Analyze the extracted shipping document data and provide a comprehensive compliance assessment.
+// Enhanced analysis prompt with comprehensive compliance checking
+const HAZMAT_ANALYSIS_PROMPT = `You are an expert in U.S. hazardous materials transportation regulations (49 CFR). Analyze the extracted shipping document data and provide a comprehensive compliance assessment with safety-first prioritization.
 
 IMPORTANT: Return ONLY valid JSON with no additional text, markdown formatting, or code fences.
 
@@ -51,15 +66,72 @@ Return a JSON object with this exact structure:
       }
     }
   ],
-  "incompatibilities": ["array of incompatibility warnings"]
+  "incompatibilities": ["array of incompatibility warnings"],
+  "documentValidation": {
+    "hasEmergencyContact": boolean,
+    "hasShipperCertification": boolean,
+    "hasDateOfAcceptance": boolean,
+    "hasProperSequence": boolean,
+    "hasRequiredQuantity": boolean,
+    "hasPackageDescription": boolean,
+    "missingCriticalFields": ["array of critical missing fields"],
+    "validationErrors": ["array of validation error messages"]
+  },
+  "placardingRequirements": [
+    {
+      "placardName": "string",
+      "required": boolean,
+      "quantityThreshold": "string (any|1001+ lbs)",
+      "reasoning": "string",
+      "cfrReference": "string"
+    }
+  ],
+  "safetyAlerts": [
+    {
+      "severity": "critical|warning|info",
+      "title": "string",
+      "message": "string",
+      "actionRequired": "string",
+      "cfrReference": "string"
+    }
+  ],
+  "immediateActions": ["array of immediate action items"],
+  "complianceViolations": ["array of CFR violations"],
+  "cfrReferences": ["array of relevant CFR citations"]
 }
 
-Apply these rules:
-1. Check for required fields per 49 CFR §172.200-205
-2. Determine placard requirements per 49 CFR §172.504
-3. Look up ERG guide numbers and provide safety summaries
-4. Check for material incompatibilities
-5. Identify any routing restrictions
+COMPLIANCE ANALYSIS REQUIREMENTS:
+
+1. DOCUMENT VALIDATION (49 CFR 172.200-205):
+   - Check mandatory sequence: UN/NA → Proper Shipping Name → Hazard Class → Packing Group
+   - Verify emergency contact is present and monitored
+   - Validate shipper certification contains required regulatory language
+   - Confirm date of acceptance is included
+   - Check total quantity with proper units
+   - Verify package description is complete
+
+2. PLACARDING REQUIREMENTS (49 CFR 172.504):
+   - ANY QUANTITY materials (Table 1): Class 1 (1.1, 1.2, 1.3, 1.5), Class 2.3, Class 4.3, Class 5.2, Class 6.1 (inhalation), Class 7
+   - QUANTITY THRESHOLD materials (Table 2): 1001+ lbs for Class 1.4, 1.6, 2.1, 2.2, 3, 4.1, 4.2, 5.1, 6.1, 8, 9
+   - Calculate aggregate quantities by hazard class
+   - Provide specific reasoning for each placard requirement
+
+3. SAFETY PRIORITIES:
+   - CRITICAL: Evacuation distances, PPE requirements, fire response, incompatibilities
+   - WARNING: Missing fields, incorrect placarding, quantity violations
+   - INFO: ERG guides, CFR references, technical details
+
+4. ERG SAFETY DATA:
+   - Look up guide numbers for each UN number
+   - Provide evacuation distances and PPE requirements
+   - Include fire response procedures
+   - List specific hazards
+
+5. COMPLIANCE VIOLATIONS:
+   - Identify any CFR violations with specific citations
+   - Flag missing critical safety information
+   - Note quantity threshold violations
+   - Highlight documentation errors
 
 Do not include any explanatory text, just the JSON object.`;
 
@@ -97,7 +169,35 @@ function validateAndNormalizeResponse(data: any): HazmatAnalysisResult {
         evacuation_distance: item.ergSummary?.evacuation_distance ?? "",
         fire_response: item.ergSummary?.fire_response ?? ""
       }
-    })) : []
+    })) : [],
+    // Enhanced compliance fields
+    documentValidation: {
+      hasEmergencyContact: data.documentValidation?.hasEmergencyContact ?? false,
+      hasShipperCertification: data.documentValidation?.hasShipperCertification ?? false,
+      hasDateOfAcceptance: data.documentValidation?.hasDateOfAcceptance ?? false,
+      hasProperSequence: data.documentValidation?.hasProperSequence ?? false,
+      hasRequiredQuantity: data.documentValidation?.hasRequiredQuantity ?? false,
+      hasPackageDescription: data.documentValidation?.hasPackageDescription ?? false,
+      missingCriticalFields: Array.isArray(data.documentValidation?.missingCriticalFields) ? data.documentValidation.missingCriticalFields : [],
+      validationErrors: Array.isArray(data.documentValidation?.validationErrors) ? data.documentValidation.validationErrors : []
+    },
+    placardingRequirements: Array.isArray(data.placardingRequirements) ? data.placardingRequirements.map((req: any) => ({
+      placardName: req.placardName ?? "",
+      required: req.required ?? false,
+      quantityThreshold: req.quantityThreshold ?? "",
+      reasoning: req.reasoning ?? "",
+      cfrReference: req.cfrReference ?? ""
+    })) : [],
+    safetyAlerts: Array.isArray(data.safetyAlerts) ? data.safetyAlerts.map((alert: any) => ({
+      severity: alert.severity ?? "info",
+      title: alert.title ?? "",
+      message: alert.message ?? "",
+      actionRequired: alert.actionRequired ?? "",
+      cfrReference: alert.cfrReference ?? ""
+    })) : [],
+    immediateActions: Array.isArray(data.immediateActions) ? data.immediateActions : [],
+    complianceViolations: Array.isArray(data.complianceViolations) ? data.complianceViolations : [],
+    cfrReferences: Array.isArray(data.cfrReferences) ? data.cfrReferences : []
   };
 }
 

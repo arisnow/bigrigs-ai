@@ -1,8 +1,36 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
-import { HazmatAnalysisResult } from "@/types/hazmat";
+import { HazmatAnalysisResult } from "@bigrigs/types";
 import ResultsDisplay from "@/components/ResultsDisplay";
+
+function normalizeResult(data: unknown): HazmatAnalysisResult {
+  const d = data as Partial<HazmatAnalysisResult>;
+  return {
+    documentIsValid: d.documentIsValid ?? false,
+    missingFields: Array.isArray(d.missingFields) ? d.missingFields : [],
+    placards: Array.isArray(d.placards) ? d.placards : [],
+    placardReasoning: d.placardReasoning ?? "",
+    incompatibilities: Array.isArray(d.incompatibilities) ? d.incompatibilities : [],
+    complianceScore: d.complianceScore ?? "0/10",
+    lineItems: Array.isArray(d.lineItems) ? d.lineItems : [],
+    documentValidation: d.documentValidation ?? {
+      hasEmergencyContact: false,
+      hasShipperCertification: false,
+      hasDateOfAcceptance: false,
+      hasProperSequence: false,
+      hasRequiredQuantity: false,
+      hasPackageDescription: false,
+      missingCriticalFields: [],
+      validationErrors: []
+    },
+    placardingRequirements: Array.isArray(d.placardingRequirements) ? d.placardingRequirements : [],
+    safetyAlerts: Array.isArray(d.safetyAlerts) ? d.safetyAlerts : [],
+    immediateActions: Array.isArray(d.immediateActions) ? d.immediateActions : [],
+    complianceViolations: Array.isArray(d.complianceViolations) ? d.complianceViolations : [],
+    cfrReferences: Array.isArray(d.cfrReferences) ? d.cfrReferences : []
+  };
+}
 
 function ResultsContent() {
   const searchParams = useSearchParams();
@@ -14,7 +42,7 @@ function ResultsContent() {
     if (raw) {
       try {
         const parsedData = JSON.parse(decodeURIComponent(raw));
-        setData(parsedData);
+        setData(normalizeResult(parsedData));
       } catch (e) {
         setError("Failed to parse results data. It may be malformed.");
         console.error(e);

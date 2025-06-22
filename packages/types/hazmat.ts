@@ -17,6 +17,34 @@ export interface HazmatLineItem {
   ergSummary: ErgSummary;
 }
 
+// Enhanced compliance checking types
+export interface DocumentValidation {
+  hasEmergencyContact: boolean;
+  hasShipperCertification: boolean;
+  hasDateOfAcceptance: boolean;
+  hasProperSequence: boolean;
+  hasRequiredQuantity: boolean;
+  hasPackageDescription: boolean;
+  missingCriticalFields: string[];
+  validationErrors: string[];
+}
+
+export interface PlacardingRequirement {
+  placardName: string;
+  required: boolean;
+  quantityThreshold: string; // "any" or "1001+ lbs"
+  reasoning: string;
+  cfrReference: string;
+}
+
+export interface SafetyAlert {
+  severity: 'critical' | 'warning' | 'info';
+  title: string;
+  message: string;
+  actionRequired: string;
+  cfrReference?: string;
+}
+
 export interface HazmatAnalysisResult {
   documentIsValid: boolean;
   missingFields: string[];
@@ -25,6 +53,13 @@ export interface HazmatAnalysisResult {
   incompatibilities: string[];
   complianceScore: string;
   lineItems: HazmatLineItem[];
+  // Enhanced compliance fields
+  documentValidation: DocumentValidation;
+  placardingRequirements: PlacardingRequirement[];
+  safetyAlerts: SafetyAlert[];
+  immediateActions: string[];
+  complianceViolations: string[];
+  cfrReferences: string[];
 }
 
 // New type for raw data extraction
@@ -37,6 +72,13 @@ export interface RawHazmatData {
     quantity: string;
   }[];
   missingFields: string[]; // Fields the extractor noticed were missing
+  // Enhanced extraction fields
+  emergencyContact?: string;
+  shipperCertification?: string;
+  dateOfAcceptance?: string;
+  totalQuantity?: string;
+  packageDescription?: string;
+  documentType?: 'bill_of_lading' | 'manifest' | 'other';
 }
 
 export interface UploadState {
