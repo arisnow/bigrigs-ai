@@ -1,0 +1,14 @@
+{
+  "name": "bigrigs-ai",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=hazmate-app",
+    "dev": "npm run dev --workspace=hazmate-app",
+    "lint": "npm run lint --workspace=hazmate-app"
+  }
+} 
