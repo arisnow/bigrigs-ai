@@ -19,7 +19,7 @@ class AiServiceFactory {
     console.log(`Initializing default AI provider: ${providerName}`);
 
     if (providerName === 'gemini') {
-      const geminiModel = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+      const geminiModel = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
       this.defaultProvider = new GoogleGeminiProvider(geminiModel);
     } else {
       // Default to OpenAI if the variable is not set or is set to 'openai'

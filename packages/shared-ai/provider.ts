@@ -224,11 +224,10 @@ export class GoogleGeminiProvider implements IAiProvider {
     this.genAI = new GoogleGenerativeAI(apiKey);
     
     this.modelConfig = {
-      model: model || "gemini-2.5-flash",
+      model: model || "gemini-2.0-flash",
       generationConfig: {
         temperature: 0.1,
       },
-      responseMimeType: 'application/json',
       safetySettings: [
         {
           category: HarmCategory.HARM_CATEGORY_HARASSMENT,
