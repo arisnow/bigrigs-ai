@@ -97,12 +97,47 @@ Return a JSON object with this exact structure:
   ],
   "immediateActions": ["array of immediate action items"],
   "complianceViolations": ["array of CFR violations"],
-  "cfrReferences": ["array of relevant CFR citations"]
+  "cfrReferences": ["array of relevant CFR citations"],
+  "driverSummary": {
+    "canDrive": boolean,
+    "primaryActions": [
+      {
+        "priority": "critical|high|medium|low",
+        "action": "string (simple action like 'Put FLAMMABLE placard on front')",
+        "location": "string (optional, like 'front', 'left side')",
+        "reasoning": "string (brief explanation)",
+        "cfrReference": "string (CFR citation)"
+      }
+    ],
+    "placardPlacements": [
+      {
+        "placardName": "string",
+        "required": boolean,
+        "locations": ["array of placement locations"],
+        "reasoning": "string (why this placard is needed)",
+        "cfrReference": "string"
+      }
+    ],
+    "emergencyInfo": {
+      "evacuationDistance": "string",
+      "ppeRequired": ["array of PPE items"],
+      "fireResponse": "string",
+      "emergencyContact": "string (if available)"
+    },
+    "missingCriticalItems": ["array of critical missing items"],
+    "complianceScore": "string"
+  }
 }
 
 COMPLIANCE ANALYSIS REQUIREMENTS:
 
-1. DOCUMENT VALIDATION (49 CFR 172.200-205):
+1. DRIVER-FOCUSED ACTIONS (Priority):
+   - Convert regulatory requirements into simple, actionable steps
+   - Use clear, direct language: "Put FLAMMABLE placard on front"
+   - Include specific locations for placard placement
+   - Prioritize actions: critical (can't drive), high (must fix), medium (should fix), low (nice to have)
+
+2. DOCUMENT VALIDATION (49 CFR 172.200-205):
    - Check mandatory sequence: UN/NA → Proper Shipping Name → Hazard Class → Packing Group
    - Verify emergency contact is present and monitored
    - Validate shipper certification contains required regulatory language
@@ -110,28 +145,36 @@ COMPLIANCE ANALYSIS REQUIREMENTS:
    - Check total quantity with proper units
    - Verify package description is complete
 
-2. PLACARDING REQUIREMENTS (49 CFR 172.504):
+3. PLACARDING REQUIREMENTS (49 CFR 172.504):
    - ANY QUANTITY materials (Table 1): Class 1 (1.1, 1.2, 1.3, 1.5), Class 2.3, Class 4.3, Class 5.2, Class 6.1 (inhalation), Class 7
    - QUANTITY THRESHOLD materials (Table 2): 1001+ lbs for Class 1.4, 1.6, 2.1, 2.2, 3, 4.1, 4.2, 5.1, 6.1, 8, 9
    - Calculate aggregate quantities by hazard class
    - Provide specific reasoning for each placard requirement
 
-3. SAFETY PRIORITIES:
+4. SAFETY PRIORITIES:
    - CRITICAL: Evacuation distances, PPE requirements, fire response, incompatibilities
    - WARNING: Missing fields, incorrect placarding, quantity violations
    - INFO: ERG guides, CFR references, technical details
 
-4. ERG SAFETY DATA:
+5. ERG SAFETY DATA:
    - Look up guide numbers for each UN number
    - Provide evacuation distances and PPE requirements
    - Include fire response procedures
    - List specific hazards
 
-5. COMPLIANCE VIOLATIONS:
+6. COMPLIANCE VIOLATIONS:
    - Identify any CFR violations with specific citations
    - Flag missing critical safety information
    - Note quantity threshold violations
    - Highlight documentation errors
+
+DRIVER SUMMARY REQUIREMENTS:
+- canDrive: true only if document is valid AND no critical safety issues
+- primaryActions: Convert all requirements into simple action steps
+- placardPlacements: Specify exact locations (front, left side, right side, rear)
+- emergencyInfo: Consolidate ERG data into single emergency reference
+- missingCriticalItems: List items that prevent driving
+- complianceScore: Overall compliance rating
 
 Do not include any explanatory text, just the JSON object.`;
 
@@ -197,7 +240,32 @@ function validateAndNormalizeResponse(data: any): HazmatAnalysisResult {
     })) : [],
     immediateActions: Array.isArray(data.immediateActions) ? data.immediateActions : [],
     complianceViolations: Array.isArray(data.complianceViolations) ? data.complianceViolations : [],
-    cfrReferences: Array.isArray(data.cfrReferences) ? data.cfrReferences : []
+    cfrReferences: Array.isArray(data.cfrReferences) ? data.cfrReferences : [],
+    driverSummary: {
+      canDrive: data.driverSummary?.canDrive ?? false,
+      primaryActions: Array.isArray(data.driverSummary?.primaryActions) ? data.driverSummary.primaryActions.map((action: any) => ({
+        priority: action.priority ?? "",
+        action: action.action ?? "",
+        location: action.location ?? "",
+        reasoning: action.reasoning ?? "",
+        cfrReference: action.cfrReference ?? ""
+      })) : [],
+      placardPlacements: Array.isArray(data.driverSummary?.placardPlacements) ? data.driverSummary.placardPlacements.map((placement: any) => ({
+        placardName: placement.placardName ?? "",
+        required: placement.required ?? false,
+        locations: Array.isArray(placement.locations) ? placement.locations : [],
+        reasoning: placement.reasoning ?? "",
+        cfrReference: placement.cfrReference ?? ""
+      })) : [],
+      emergencyInfo: {
+        evacuationDistance: data.driverSummary?.emergencyInfo?.evacuationDistance ?? "",
+        ppeRequired: Array.isArray(data.driverSummary?.emergencyInfo?.ppeRequired) ? data.driverSummary.emergencyInfo.ppeRequired : [],
+        fireResponse: data.driverSummary?.emergencyInfo?.fireResponse ?? "",
+        emergencyContact: data.driverSummary?.emergencyInfo?.emergencyContact ?? ""
+      },
+      missingCriticalItems: Array.isArray(data.driverSummary?.missingCriticalItems) ? data.driverSummary.missingCriticalItems : [],
+      complianceScore: data.driverSummary?.complianceScore ?? ""
+    }
   };
 }
 

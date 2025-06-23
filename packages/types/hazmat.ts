@@ -17,6 +17,39 @@ export interface HazmatLineItem {
   ergSummary: ErgSummary;
 }
 
+// Driver-focused action types
+export interface DriverAction {
+  priority: 'critical' | 'high' | 'medium' | 'low';
+  action: string;
+  location?: string; // "front", "left side", "right side", etc.
+  reasoning?: string;
+  cfrReference?: string;
+}
+
+export interface PlacardPlacement {
+  placardName: string;
+  required: boolean;
+  locations: string[]; // ["front", "left side", "right side"]
+  reasoning: string;
+  cfrReference: string;
+}
+
+export interface EmergencyInfo {
+  evacuationDistance: string;
+  ppeRequired: string[];
+  fireResponse: string;
+  emergencyContact?: string;
+}
+
+export interface DriverSummary {
+  canDrive: boolean;
+  primaryActions: DriverAction[];
+  placardPlacements: PlacardPlacement[];
+  emergencyInfo: EmergencyInfo;
+  missingCriticalItems: string[];
+  complianceScore: string;
+}
+
 // Enhanced compliance checking types
 export interface DocumentValidation {
   hasEmergencyContact: boolean;
@@ -60,6 +93,8 @@ export interface HazmatAnalysisResult {
   immediateActions: string[];
   complianceViolations: string[];
   cfrReferences: string[];
+  // Driver-focused summary
+  driverSummary: DriverSummary;
 }
 
 // New type for raw data extraction

@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import { HazmatAnalysisResult } from "@bigrigs/types";
 import ResultsDisplay from "@/components/ResultsDisplay";
+import DriverView from "@/components/DriverView";
 
 function normalizeResult(data: unknown): HazmatAnalysisResult {
   const d = data as Partial<HazmatAnalysisResult>;
@@ -28,7 +29,20 @@ function normalizeResult(data: unknown): HazmatAnalysisResult {
     safetyAlerts: Array.isArray(d.safetyAlerts) ? d.safetyAlerts : [],
     immediateActions: Array.isArray(d.immediateActions) ? d.immediateActions : [],
     complianceViolations: Array.isArray(d.complianceViolations) ? d.complianceViolations : [],
-    cfrReferences: Array.isArray(d.cfrReferences) ? d.cfrReferences : []
+    cfrReferences: Array.isArray(d.cfrReferences) ? d.cfrReferences : [],
+    driverSummary: d.driverSummary ?? {
+      canDrive: false,
+      primaryActions: [],
+      placardPlacements: [],
+      emergencyInfo: {
+        evacuationDistance: "",
+        ppeRequired: [],
+        fireResponse: "",
+        emergencyContact: ""
+      },
+      missingCriticalItems: [],
+      complianceScore: "0/10"
+    }
   };
 }
 
@@ -36,6 +50,7 @@ function ResultsContent() {
   const searchParams = useSearchParams();
   const [data, setData] = useState<HazmatAnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<'driver' | 'detailed'>('driver');
 
   useEffect(() => {
     const raw = searchParams.get("data");
@@ -69,7 +84,44 @@ function ResultsContent() {
     );
   }
 
-  return <ResultsDisplay data={data} />;
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* View Toggle */}
+      <div className="bg-white border-b border-gray-200 p-4">
+        <div className="max-w-md mx-auto">
+          <div className="flex bg-gray-200 rounded-lg p-1">
+            <button
+              onClick={() => setViewMode('driver')}
+              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                viewMode === 'driver'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              🚛 Driver View
+            </button>
+            <button
+              onClick={() => setViewMode('detailed')}
+              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                viewMode === 'detailed'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              📋 Detailed View
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      {viewMode === 'driver' ? (
+        <DriverView data={data} />
+      ) : (
+        <ResultsDisplay data={data} />
+      )}
+    </div>
+  );
 }
 
 export default function ResultsPage() {
