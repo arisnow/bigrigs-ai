@@ -1,0 +1,97 @@
+Your Hazardous Materials Packaging Inspection Checklist
+First things first: Always start by comparing the physical package to the shipping paper. The shipping paper is your primary source of truth for what that material is supposed to be, its hazards, and how it should be presented for transport.
+
+--------------------------------------------------------------------------------
+1. General Package Condition & Integrity:
+•
+Is the package intact? Look for any signs of leaks, spills, or damage [implied by the requirement for materials to be "in proper condition for transportation" (353)].
+◦
+For liquids, check for wet spots, drips, or staining.
+◦
+For solids (especially powders or granules), look for any material escaping from seams or closures.
+◦
+If it's a bulk packaging (like a portable tank or cargo tank), ensure there's no visible structural damage that could compromise its integrity [implied by 369].
+•
+Is it properly secured? Packages, particularly liquid ones, should be secured to prevent shifting that could cause them to open or fall over during transport.
+•
+Orientation Markings: For inner packagings containing liquid hazardous materials, look for orientation markings (like arrows pointing up). These are required to prevent leakage if the package is incorrectly oriented.
+•
+No Free Liquid: For mixtures of solids and flammable liquids, ensure there is no free liquid visible at the time of loading or when the packaging is closed.
+
+--------------------------------------------------------------------------------
+2. Markings Checklist:
+•
+Proper Shipping Name & Identification Number:
+◦
+Every non-bulk package must clearly show the proper shipping name and the identification number (preceded by “UN”, “NA”, or “ID”) exactly as it's listed on your shipping paper and in the Hazardous Materials Table.
+◦
+The identification number characters must be at least 12 mm (0.47 inches) high.
+◦
+For bulk packagings, the identification number needs to be on two opposing sides (if under 3,785 L / 1,000 gallons capacity) or on each side and each end (if 3,785 L / 1,000 gallons or more).
+◦
+If your transport vehicle or freight container contains 4,000 kg (8,820 pounds) or more of a single hazardous material in non-bulk packages (all loaded at one facility, no other materials), then the vehicle itself must be marked with that material's identification number on each side and each end.
+◦
+If your transport vehicle or freight container contains 1,000 kg (2,205 pounds) or more of materials poisonous by inhalation in Hazard Zone A or B in non-bulk packages, the vehicle must be marked with the identification number on each side and each end.
+•
+Technical Name (for generic "n.o.s." descriptions):
+◦
+If the shipping paper uses a generic "n.o.s." (not otherwise specified) description (you'll see a "G" in Column 1 of the Hazardous Materials Table), the package must also be marked with the technical name of the hazardous material in parentheses in association with the proper shipping name.
+◦
+Exception: This specific technical name marking is not required for Division 6.2 (Infectious Substance) materials.
+•
+"RQ" Marking: If your shipping paper indicates the material is a hazardous substance, the letters “RQ” must be marked on the package in association with the proper shipping name.
+•
+"Inhalation Hazard" Marking: If the material is poisonous by inhalation, the package shall be marked "Inhalation Hazard" in association with its labels or placards. This marking must appear on two opposing sides of a bulk packaging. It's not required if the words "Inhalation Hazard" are already part of the label or placard.
+•
+"POISON" Marking (for non-bulk plastic Division 6.1): For non-bulk plastic outer packagings containing Division 6.1 (poisonous) materials, look for the word “POISON” permanently marked (e.g., by embossment) in letters at least 6.3 mm (0.25 inch) high, located within 150 mm (6 inches) of the closure. For Division 6.1, Packing Group III materials, "PG III" may be marked adjacent to the POISON label.
+•
+Limited Quantity Marking: For packages prepared as "limited quantity" (not transported by air), you should see a square-on-point mark on the outer packaging. The top and bottom portions and the border should be black, with the center white or a contrasting background.
+◦
+For specific limited quantity highway/rail shipments, inner packagings might also be marked with the statement "Contains Chemicals".
+•
+"HOT" Marking (for elevated temperature materials): If your shipping paper indicates the material is transported at an elevated temperature, bulk packagings must be marked with the word “HOT” on two opposing sides.
+•
+Special Permit (SP) Markings: If your shipping paper mentions a special permit, the outside of the package must be marked “DOT-SP” followed by the special permit number. (Note: Older permits might use “DOT-E”.)
+•
+Fumigant Marking: If the transport vehicle or freight container has been fumigated or is undergoing fumigation, it must display the FUMIGANT marking.
+•
+Consignor/Consignee Name and Address: Most non-bulk packages require the name and address of the consignor or consignee, though there are some exceptions for highway-only transport if the package isn't transferred between carriers, or for full carload/truckload shipments to a single consignee.
+•
+"NON-ODORIZED" / "NOT ODORIZED": For tank cars or multi-unit tank car tanks transporting unodorized liquefied petroleum gas (LPG), check for this marking on two opposing sides near the shipping name or placards.
+
+--------------------------------------------------------------------------------
+3. Labels Checklist:
+•
+Primary and Subsidiary Hazard Labels: Each package must have the primary hazard label and any required subsidiary hazard labels as specified in Column (6) of the Hazardous Materials Table on your shipping paper.
+◦
+Placement: Labels should be printed on or affixed to a background color contrasting to the label's design or have a dotted or solid line outer border for visibility. They should also be located near the proper shipping name marking.
+◦
+Class/Division Number: The appropriate hazard class or division number must be displayed in the lower corner of both the primary and any subsidiary hazard labels.
+◦
+Text on Labels: For most hazard classes (1, 2, 3, 4, 5, 6, and 8), text indicating the hazard (like "FLAMMABLE LIQUID") is not required on the labels. However, the "OXYGEN" label must display the word "OXYGEN".
+•
+"CARGO AIRCRAFT ONLY" Label: If the material is forbidden on passenger aircraft but permitted on cargo aircraft only (check your shipping paper and Column 9A/9B of the HazMat Table), the package must have a "CARGO AIRCRAFT ONLY" label.
+•
+"RADIOACTIVE" Labels: For Class 7 (radioactive) materials, there should be two RADIOACTIVE labels affixed to opposite sides of the package.
+◦
+These labels must have the radionuclide name(s) (or "LSA-I"), the maximum activity, and the Transport Index (TI) legibly printed in the blank spaces.
+◦
+If it's a fissile radioactive material, also look for a FISSILE label completed with the Criticality Safety Index (CSI).
+•
+"EMPTY" Label: If the package contains hazardous material residue and is being transported as an "empty" packaging, it may display an "EMPTY" label.
+•
+Mixed or Consolidated Packaging: If compatible hazardous materials with different hazard classes are packed within the same outer package or overpack, that outer packaging must be labeled for each hazard class contained within. If labels for each material inside are visible through the overpack, separate labeling of the overpack isn't required.
+
+--------------------------------------------------------------------------------
+4. Red Flags – Do NOT Transport If:
+•
+Mismatched Content: The package is marked or labeled for a hazardous material, but you can tell (or strongly suspect) that it does not contain that identified hazardous material or its residue.
+•
+Confusing or Conflicting Labels/Markings: The package has any marking or label that, by its color, design, or shape, could be confused with or conflict with a required label or placard.
+•
+"Forbidden" Material: Your shipping paper or the package itself indicates it contains a material designated as "Forbidden" in Column (3) of the Hazardous Materials Table. These simply cannot be transported.
+•
+Compromised Safety: The package has significant damage, leakage, or other issues that indicate it's not in proper condition for safe transportation [implied by 353].
+
+--------------------------------------------------------------------------------
+By going through this checklist, you'll be well on your way to ensuring every hazmat shipment you transport is in top-notch condition and fully compliant. Stay safe out there!

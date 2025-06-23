@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from "react";
 import { HazmatAnalysisResult } from "@bigrigs/types";
 import ResultsDisplay from "@/components/ResultsDisplay";
 import DriverView from "@/components/DriverView";
+import ComplianceChecklist from "@/components/ComplianceChecklist";
 
 function normalizeResult(data: unknown): HazmatAnalysisResult {
   const d = data as Partial<HazmatAnalysisResult>;
@@ -50,7 +51,7 @@ function ResultsContent() {
   const searchParams = useSearchParams();
   const [data, setData] = useState<HazmatAnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<'driver' | 'detailed'>('driver');
+  const [viewMode, setViewMode] = useState<'driver' | 'detailed' | 'checklist'>('checklist');
 
   useEffect(() => {
     const raw = searchParams.get("data");
@@ -91,6 +92,16 @@ function ResultsContent() {
         <div className="max-w-md mx-auto">
           <div className="flex bg-gray-200 rounded-lg p-1">
             <button
+              onClick={() => setViewMode('checklist')}
+              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                viewMode === 'checklist'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              ✅ Checklist
+            </button>
+            <button
               onClick={() => setViewMode('driver')}
               className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
                 viewMode === 'driver'
@@ -115,7 +126,9 @@ function ResultsContent() {
       </div>
 
       {/* Content */}
-      {viewMode === 'driver' ? (
+      {viewMode === 'checklist' ? (
+        <ComplianceChecklist data={data} />
+      ) : viewMode === 'driver' ? (
         <DriverView data={data} />
       ) : (
         <ResultsDisplay data={data} />
